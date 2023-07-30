@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile="D:/SB_Practice/CommonService/target/CommonService-0.0.1-SNAPSHOT.jar" -DgroupId='com.sbpractice' -DartifactId=CommonService -Dversion='0.0.1-SNAPSHOT' -Dpackaging=jar

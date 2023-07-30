@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @RequestMapping("/order")
 @Log4j2
@@ -22,8 +21,12 @@ public class OrderController {
 
     @PostMapping("/placeOrder")
     public ResponseEntity<Long> placeOrder(@RequestBody OrderRequest orderRequest){
+
+
+
         long orderId = orderService.placeOrder(orderRequest);
         log.info("Order Id : {}", orderId);
+
         return new ResponseEntity<>(orderId, HttpStatus.OK);
     }
 }
