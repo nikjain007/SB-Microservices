@@ -7,6 +7,7 @@ import com.sbpractice.OrderService.exception.CustomException;
 import com.sbpractice.OrderService.external.client.PaymentService;
 import com.sbpractice.OrderService.external.client.ProductService;
 import com.sbpractice.OrderService.external.request.PaymentRequest;
+import com.sbpractice.OrderService.external.response.PaymentResponse;
 import com.sbpractice.OrderService.model.OrderRequest;
 import com.sbpractice.OrderService.model.OrderResponse;
 import com.sbpractice.OrderService.repository.OrderRepository;
@@ -109,6 +110,24 @@ public class OrderServiceImpl implements OrderService{
                               .productId(productResponse.getProductId())
                               .build();
 
+            log.info("Getting payment information from Payment service");
+
+            PaymentResponse paymentResponse
+                    = restTemplate.getForObject(
+                "http://PAYMENT-SERVICE/payment/"+ order.getId(),
+                    PaymentResponse.class
+                );
+
+            OrderResponse.PaymentDetails paymentDetails
+                    = OrderResponse.PaymentDetails
+                        .builder()
+                        .paymentStatus(paymentResponse.getStatus())
+                        .paymentId(paymentResponse.getPaymentId())
+                        .paymentDate(paymentResponse.getPaymentDate())
+                        .paymentMode(paymentResponse.getPaymentMode())
+                        .build();
+
+
             OrderResponse orderResponse =
                     OrderResponse
                             .builder()
@@ -117,6 +136,7 @@ public class OrderServiceImpl implements OrderService{
                             .amount(order.getAmount())
                             .orderDate(order.getOrderDate())
                             .productDetails(productDetails)
+                            .paymentDetails(paymentDetails)
                             .build();
 
             return orderResponse;
