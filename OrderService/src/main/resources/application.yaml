@@ -15,6 +15,15 @@ spring:
     name: ORDER-SERVICE
   config:
     import: configserver:http://localhost:9296
+
+#resilience4j:
+#  circuitbreaker:
+#    instances:
+#      external:
+#        event-consumer-buffer-size: 10
+#        failure-rate-threshold: 50
+#        minimum-number-of-calls: 5
+
 #eureka:
 #  instance:
 #    prefer-ip-address: true
