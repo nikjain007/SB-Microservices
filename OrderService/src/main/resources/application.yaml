@@ -15,6 +15,22 @@ spring:
     name: ORDER-SERVICE
   config:
     import: configserver:http://localhost:9296
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-25670025.okta.com/oauth2/default
+      client:
+        registration:
+          internal-client:
+            provider: okta
+            authorization-grant-type: client_credentials
+            scope: internal
+            client-id: 0oaarb3kmn22i0Ve85d7
+            client-secret: 5wBIvceubblvic6QmW2PvcZ9oWzgamgpgRo1A-tLkRI3QNkPVKBiVoHJ1XFsxz4c
+        provider:
+          okta:
+            issuer-uri: https://dev-25670025.okta.com/oauth2/default
 
 resilience4j:
   circuitbreaker:
@@ -28,6 +44,7 @@ resilience4j:
         permitted-number-of-calls-in-half-open-state: 3
         sliding-window-size: 10
         sliding-window-type: COUNT_BASED
+
 
 #eureka:
 #  instance:
