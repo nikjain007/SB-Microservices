@@ -7,14 +7,21 @@ import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JCircuit
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JCircuitBreakerFactory;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JConfigBuilder;
 import org.springframework.cloud.client.circuitbreaker.Customizer;
+import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import reactor.core.publisher.Mono;
 
 @SpringBootApplication
 public class CloudGatewayApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CloudGatewayApplication.class, args);
+	}
+
+	@Bean
+	KeyResolver userKeyResolver(){
+		return exchange -> Mono.just("userKey");
 	}
 
 	@Bean
