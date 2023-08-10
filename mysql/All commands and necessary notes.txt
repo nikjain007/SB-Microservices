@@ -6,13 +6,3 @@ docker run -d -p 9411:9411 openzipkin/zipkin
 
 docker run --name nikhil-redis -d -p 6379:6379 redis
 
-Okta:
-ClientId : 0oaarb3kmn22i0Ve85d7
-Client Secret: 5wBIvceubblvic6QmW2PvcZ9oWzgamgpgRo1A-tLkRI3QNkPVKBiVoHJ1XFsxz4c
-Audience: api://default	
-Issuer URI: https://dev-25670025.okta.com/oauth2/default	
-
-	
-Okta user:
-nikhil.jain1@incedoinc.com
-Testing@1234
